@@ -1,43 +1,64 @@
 # Rochambeau (Rock-Paper-Scissors)
 
-A fun, animated command-line version of the classic game Rock-Paper-Scissors (also known as Rochambeau), written in Python.
+A fun, modern version of the classic game Rock-Paper-Scissors (Rochambeau) in Python. Includes both a text-based terminal game and a beautiful PySide6 GUI version.
 
-## What is Rochambeau?
-Rochambeau, or Rock-Paper-Scissors, is a simple hand game usually played between two people. Each player simultaneously forms one of three shapes with their hand:
-- Rock
-- Paper
-- Scissors
-
-The winner is determined by the rules:
-- Rock beats Scissors
-- Scissors beats Paper
-- Paper beats Rock
+## Features
+- Play in the terminal or with a modern graphical interface
+- Animated ASCII art (text version) or real images (GUI version)
+- Flexible input: full word, single letter, or number (text version)
+- Scoreboard and round tracking
+- Stylish, responsive GUI with icons and gradients
+- Automated tests for quality assurance
 
 ## How to Play
-1. Run the script using Python 3:
+
+### Text Version
+1. Run the script:
    ```
    python rochambeau.py
    ```
-2. Follow the on-screen prompts:
-   - Choose your move by typing the full name (e.g., `rock`), a single letter (`r`, `p`, `s`), or the number (`1`, `2`, `3`).
-   - You can also exit the game by typing `4`, `e`, `q`, `x`, `exit`, or `quit`.
-3. Watch the animated countdown and see your move and the computer's move displayed side by side with ASCII art.
-4. The game will announce the winner of each round and keep score.
-5. Play as many rounds as you like! The score table updates after each round.
+2. Enter your move as a word (rock, paper, scissors), a letter (r, p, s), or a number (1, 2, 3).
+3. The computer will play against you, and the winner is shown after each round.
+4. The scoreboard updates after every round. Enter 4, e, q, x, or exit to quit.
 
-## Features
-- Animated ASCII art for each move, including a countdown and hand motion.
-- Side-by-side display of your move and the computer's move.
-- Flexible input: full word, single letter, or number.
-- Scoreboard showing wins, losses, and ties.
-- Colorful win/lose messages (if your terminal supports ANSI colors).
-- Option to exit at any time.
-- Works on Windows, macOS, and Linux terminals.
+### GUI Version
+1. Make sure you have PySide6 installed:
+   ```
+   pip install PySide6
+   ```
+2. Place your PNG images for rock, paper, and scissors in an `images/` folder.
+3. Run the GUI:
+   ```
+   python rochambeau_gui.py
+   ```
+4. Click the Rock, Paper, or Scissors buttons to play. The GUI will show your choice, the computer's choice, and update the score.
+5. Click Exit to quit.
+
+## Automated Testing
+- Run all tests with:
+  ```
+  python -m unittest discover
+  ```
+- See `test_game_flow.py` for simulated user interaction tests.
 
 ## Requirements
 - Python 3.x
+- PySide6 (for GUI)
 
-No external libraries are required.
+## Project Structure
+```
+Rochambeau/
+├── rochambeau.py           # Text-based game
+├── rochambeau_gui.py       # GUI game (PySide6)
+├── images/                 # PNG images for GUI
+│   ├── rock.png
+│   ├── paper.png
+│   └── scissors.png
+├── test_game_flow.py       # Automated tests
+├── README.md               # Project overview
+├── INSTRUCTIONS.md         # Detailed instructions
+└── ...
+```
 
 ## Enjoy the game!
 Feel free to modify or extend the game with new features, such as multiplayer mode, statistics, or more hand gestures!
