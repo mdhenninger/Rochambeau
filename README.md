@@ -34,6 +34,21 @@ A fun, modern version of the classic game Rock-Paper-Scissors (Rochambeau) in Py
 4. Click the Rock, Paper, or Scissors buttons to play. The GUI will show your choice, the computer's choice, and update the score.
 5. Click Exit to quit.
 
+#### Building a Standalone Executable (Windows)
+You can create a standalone `.exe` for the GUI version using PyInstaller. Images are now bundled automatically and will display correctly in the executable.
+
+1. Install PyInstaller:
+   ```
+   pip install pyinstaller
+   ```
+2. Build the executable:
+   ```
+   pyinstaller --noconfirm --onefile --windowed --add-data "images;images" rochambeau_gui.py
+   ```
+3. The `.exe` will be in the `dist` folder. Double-click to run. No Python installation is needed for end users.
+
+**Note:** The code uses a `resource_path` helper to ensure images load correctly in both script and executable modes.
+
 ## Automated Testing
 - Run all tests with:
   ```

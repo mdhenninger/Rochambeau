@@ -29,6 +29,7 @@
    - Install PySide6: `pip install PySide6`
    - Place `rock.png`, `paper.png`, and `scissors.png` in an `images/` folder in the project directory.
 
+
 2. **Start the Game**
    - Run: `python rochambeau_gui.py`
 
@@ -43,6 +44,24 @@
    - Stylish scoreboard and buttons
    - Responsive layout and color highlights
    - PNG icons for a modern look
+
+---
+
+### Creating a Standalone Executable (Windows)
+
+You can build a standalone `.exe` for the GUI game using PyInstaller. The code now ensures images are bundled and display correctly in the executable.
+
+1. Install PyInstaller (if not already):
+   ```
+   pip install pyinstaller
+   ```
+2. Build the executable:
+   ```
+   pyinstaller --noconfirm --onefile --windowed --add-data "images;images" rochambeau_gui.py
+   ```
+3. The `.exe` will be in the `dist` folder. Double-click to run. No Python installation is needed for end users.
+
+**Note:** The game uses a `resource_path` helper to ensure images work in both script and executable modes.
 
 ---
 

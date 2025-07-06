@@ -1,10 +1,18 @@
+
 import sys
+import os
 import random
 from PySide6.QtWidgets import (
     QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, QMessageBox
 )
 from PySide6.QtGui import QFont, QPixmap, QIcon
 from PySide6.QtCore import Qt
+
+# Helper to get resource path for images (works for script and PyInstaller exe)
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 MOVES = ['rock', 'paper', 'scissors']
 
@@ -55,7 +63,7 @@ class RochambeauGUI(QWidget):
 
         # Modern Buttons with icons
         btn_rock = QPushButton(" Rock")
-        btn_rock.setIcon(QIcon("images/rock.png"))
+        btn_rock.setIcon(QIcon(resource_path(os.path.join("images", "rock.png"))))
         btn_rock.setIconSize(self.player_image.size())
         btn_rock.setFont(QFont('Arial', 12, QFont.Bold))
         btn_rock.setStyleSheet("""
@@ -65,7 +73,7 @@ class RochambeauGUI(QWidget):
         btn_rock.clicked.connect(lambda: self.play('rock'))
 
         btn_paper = QPushButton(" Paper")
-        btn_paper.setIcon(QIcon("images/paper.png"))
+        btn_paper.setIcon(QIcon(resource_path(os.path.join("images", "paper.png"))))
         btn_paper.setIconSize(self.player_image.size())
         btn_paper.setFont(QFont('Arial', 12, QFont.Bold))
         btn_paper.setStyleSheet("""
@@ -75,7 +83,7 @@ class RochambeauGUI(QWidget):
         btn_paper.clicked.connect(lambda: self.play('paper'))
 
         btn_scissors = QPushButton(" Scissors")
-        btn_scissors.setIcon(QIcon("images/scissors.png"))
+        btn_scissors.setIcon(QIcon(resource_path(os.path.join("images", "scissors.png"))))
         btn_scissors.setIconSize(self.player_image.size())
         btn_scissors.setFont(QFont('Arial', 12, QFont.Bold))
         btn_scissors.setStyleSheet("""
@@ -125,8 +133,10 @@ class RochambeauGUI(QWidget):
 
     def play(self, player_move):
         computer_move = random.choice(MOVES)
-        self.player_image.setPixmap(QPixmap(f"images/{player_move}.png").scaled(120, 120, Qt.KeepAspectRatio, Qt.SmoothTransformation))
-        self.computer_image.setPixmap(QPixmap(f"images/{computer_move}.png").scaled(120, 120, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        player_img_path = resource_path(os.path.join("images", f"{player_move}.png"))
+        computer_img_path = resource_path(os.path.join("images", f"{computer_move}.png"))
+        self.player_image.setPixmap(QPixmap(player_img_path).scaled(120, 120, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        self.computer_image.setPixmap(QPixmap(computer_img_path).scaled(120, 120, Qt.KeepAspectRatio, Qt.SmoothTransformation))
         self.player_text.setText(f"You chose: {player_move}")
         self.computer_text.setText(f"Computer chose: {computer_move}")
         if player_move == computer_move:
